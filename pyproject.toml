@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sepsis-ew"
+version = "0.1.0"
+description = "Sepsis early-warning model on PhysioNet 2019 hourly ICU data"
+readme = "README.md"
+requires-python = ">=3.11"
+# Runtime dependencies are added phase by phase as they are actually needed,
+# so the dependency list always reflects what the code uses.
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "pyarrow>=15",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "ruff>=0.6",
+    "black>=24",
+    "mypy>=1.10",
+    "pandas-stubs",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+# Pyflakes (F) and syntax errors (E9) catch real bugs; bugbear (B) catches
+# common pitfalls such as mutable default arguments. Formatting is owned by
+# black, so style-only rules are left off.
+select = ["E9", "F", "B"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true

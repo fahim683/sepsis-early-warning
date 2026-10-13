@@ -1,0 +1,22 @@
+# Environments
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Data and model artifacts never go in git (PhysioNet data is downloaded by script)
+data/*
+!data/.gitkeep
+models/
+mlruns/
+mlartifacts/
+
+# Notebooks / OS
+.ipynb_checkpoints/
+.DS_Store
